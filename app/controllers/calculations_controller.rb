@@ -38,7 +38,11 @@ class CalculationsController < ApplicationController
     # The principal value the user input is in the decimal @principal.
     # ================================================================================
 
-    @monthly_payment = ((@apr/100)/(1-(1+@apr)**-@years))*@principal
+
+    r=@apr/12/100
+    period=@years*12
+    @monthly_payment = (r/(1-((1+r)**-period)))*@principal
+    #(r*((1+r)**period))/(((1+r)**period)-1)*@principal
 
     # ================================================================================
     # Your code goes above.

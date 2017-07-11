@@ -88,27 +88,51 @@ class CalculationsController < ApplicationController
     # The numbers the user input are in the array @numbers.
     # ================================================================================
 
-    @sorted_numbers = "Replace this string with your answer."
+    @sorted_numbers = @numbers.sort
 
-    @count = "Replace this string with your answer."
+    @count = @numbers.count
 
-    @minimum = "Replace this string with your answer."
+    @minimum = @numbers.min
 
-    @maximum = "Replace this string with your answer."
+    @maximum = @numbers.max
 
-    @range = "Replace this string with your answer."
+    @range = @maximum - @minimum
 
-    @median = "Replace this string with your answer."
+    @median = if @count.odd?
+                @sorted_numbers[(@count-1)/2]
+              else 
+                (@sorted_numbers[(@count/2)-1]+@sorted_numbers[@count/2])/2
+              end
+              
 
-    @sum = "Replace this string with your answer."
+    @sum = @numbers.sum
 
-    @mean = "Replace this string with your answer."
+    @mean = @sum / @count
 
-    @variance = "Replace this string with your answer."
+    # variance calc
+            @var_array = []
+            @numbers.each do |num|
+              var = (num - @mean)**2
+              @var_array.push(var)
+            end
+    @variance = @var_array.sum / @count
 
-    @standard_deviation = "Replace this string with your answer."
+    @standard_deviation = 
+            @variance**(0.5)
 
-    @mode = "Replace this string with your answer."
+    #mode calc
+            #@mode_hash = {}
+            #@numbers.each do |num|
+              #@mode_hash[num]=0
+            #end
+            
+            #if @mode_hash[num] == @numbers[num]
+             # @mode_hash[num] += 1
+            #end
+            
+           # @mode_hash.sort
+            
+    @mode = "stumped"
 
     # ================================================================================
     # Your code goes above.

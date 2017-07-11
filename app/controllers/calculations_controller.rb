@@ -17,7 +17,10 @@ class CalculationsController < ApplicationController
 
     @character_count_without_spaces = @text.gsub(" ","").length
 
-    @occurrences = @text.split.count(@special_word)
+    #Occurrences code
+         @clean_text = @text.gsub(/[^a-z0-9\s]/i, "")
+         @d_text = @clean_text.downcase
+         @occurrences = @d_text.split.count(@special_word)
 
     # ================================================================================
     # Your code goes above.
@@ -123,7 +126,7 @@ class CalculationsController < ApplicationController
     #mode calc
             #@mode_hash = {}
             #@numbers.each do |num|
-              #@mode_hash[num]=0
+              #modes = { :number => num, :mode => numbers.count(num)
             #end
             
             #if @mode_hash[num] == @numbers[num]

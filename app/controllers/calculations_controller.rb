@@ -124,18 +124,13 @@ class CalculationsController < ApplicationController
             @variance**(0.5)
 
     #mode calc
-            #@mode_hash = {}
-            #@numbers.each do |num|
-              #modes = { :number => num, :mode => numbers.count(num)
-            #end
+            @mode_hash = Hash.new(0)
+            @numbers.each do |num|
+              @mode_hash[num]=@mode_hash[num]+1
+            end
             
-            #if @mode_hash[num] == @numbers[num]
-             # @mode_hash[num] += 1
-            #end
             
-           # @mode_hash.sort
-            
-    @mode = "stumped"
+    @mode = @mode_hash.key(@mode_hash.values.max)
 
     # ================================================================================
     # Your code goes above.
